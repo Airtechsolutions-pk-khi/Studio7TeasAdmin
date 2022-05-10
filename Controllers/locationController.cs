@@ -1,10 +1,10 @@
 ﻿
 using System.Collections.Generic;
-using MadinaAdmin._Models;
-using MadinaAdmin.BLL._Services;
+using StudioAdmin._Models;
+using StudioAdmin.BLL._Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MadinaAdmin.Controllers
+namespace StudioAdmin.Controllers
 {
     [Route("api/[controller]")]
   
