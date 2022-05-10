@@ -69,7 +69,7 @@ export class SalesuserwiseComponent implements OnInit {
     });
   }
   Filter() {
-    debugger
+    
     // this.getData(obj.target.value);
   }
   

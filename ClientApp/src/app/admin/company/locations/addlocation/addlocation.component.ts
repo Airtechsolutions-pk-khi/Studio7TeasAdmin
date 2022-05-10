@@ -63,7 +63,7 @@ export class AddlocationComponent implements OnInit {
   }
 
   private editForm(obj) {
-    debugger
+    
     this.f.name.setValue(obj.name);
     this.f.email.setValue(obj.email);
     this.f.contactNo.setValue(obj.contactNo);
@@ -110,7 +110,7 @@ export class AddlocationComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     this.locationForm.markAllAsTouched();
     this.submitted = true;
     this.f.opentime.setValue(this.opentime.hour + ":" + this.opentime.minute);
@@ -120,7 +120,7 @@ export class AddlocationComponent implements OnInit {
     this.f.statusID.setValue(this.f.statusID.value === true ? 1 : 2);
 
     if (parseInt(this.f.locationID.value) === 0) {
-debugger
+
       //Insert location
       this.locationService.insert(this.locationForm.value).subscribe(data => {
         if (data != 0) {

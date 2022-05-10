@@ -53,7 +53,7 @@ export class ItemsettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    
     var obj = new Object();
     obj["Items"] = this.selectedItemIds.toString();
     obj["BrandID"] = this.ls.getSelectedBrand().brandID;

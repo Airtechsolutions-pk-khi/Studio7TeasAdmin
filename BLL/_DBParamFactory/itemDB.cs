@@ -67,7 +67,8 @@ namespace BAL.Repositories
                 {
                     if (_dt.Rows.Count > 0)
                     {
-                        _obj = _dt.DataTableToList<ItemBLL>().FirstOrDefault();
+                        _obj = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<ItemBLL>>().FirstOrDefault();
+                        //_obj = _dt.DataTableToList<ItemBLL>().FirstOrDefault();
                     }
                 }
                 return _obj;
@@ -139,7 +140,7 @@ namespace BAL.Repositories
             try
             {
                 int rtn = 0;
-                SqlParameter[] p = new SqlParameter[18];
+                SqlParameter[] p = new SqlParameter[19];
 
                 p[0] = new SqlParameter("@CategoryID", data.CategoryID);
                 p[1] = new SqlParameter("@UnitID", data.UnitID);
@@ -159,6 +160,7 @@ namespace BAL.Repositories
                 p[15] = new SqlParameter("@IsFeatured", data.IsFeatured);
                 p[16] = new SqlParameter("@Calories", data.Calories);
                 p[17] = new SqlParameter("@ItemID", data.ItemID);
+                p[18] = new SqlParameter("@IsApplyDiscount", data.IsApplyDiscount ?? true);
 
                 rtn = int.Parse(new DBHelper().GetTableFromSP("dbo.sp_insertItem_Admin", p).Rows[0]["ItemID"].ToString());
                 if (data.Modifiers != "" && data.Modifiers != null)
@@ -190,7 +192,7 @@ namespace BAL.Repositories
             try
             {
                 int rtn = 0;
-                SqlParameter[] p = new SqlParameter[18];
+                SqlParameter[] p = new SqlParameter[19];
 
                 p[0] = new SqlParameter("@CategoryID", data.CategoryID);
                 p[1] = new SqlParameter("@UnitID", data.UnitID);
@@ -210,6 +212,8 @@ namespace BAL.Repositories
                 p[15] = new SqlParameter("@IsFeatured", data.IsFeatured);
                 p[16] = new SqlParameter("@Calories", data.Calories);
                 p[17] = new SqlParameter("@ItemID", data.ItemID);
+                p[18] = new SqlParameter("@IsApplyDiscount", data.IsApplyDiscount ?? true);
+
                 rtn = (new DBHelper().ExecuteNonQueryReturn)("dbo.sp_updateItem_Admin", p);
 
                 if (data.Modifiers != "" && data.Modifiers != null)

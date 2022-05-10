@@ -75,7 +75,7 @@ export class AddonsService {
     return this.http.get<Addons[]>(`api/addons/all/${brandId}`);
   }
   getById(id,brandId) {
-    debugger;
+    
     return this.http.get<Addons[]>(`api/addons/${id}/brand/${brandId}`);
   }
   getAllData(brandId) {
@@ -137,7 +137,7 @@ export class AddonsService {
     };
   }
   insert(data) {
-    debugger;
+    
     return this.http.post(`api/addons/insert`, data)
       .pipe(map(res => {        
         console.log(res);

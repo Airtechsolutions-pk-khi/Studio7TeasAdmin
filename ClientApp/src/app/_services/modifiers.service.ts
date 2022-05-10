@@ -75,7 +75,7 @@ export class ModifiersService {
     return this.http.get<Modifiers[]>(`api/modifier/all/${brandId}`);
   }
   getById(id,brandId) {
-    debugger;
+    
     return this.http.get<Modifiers[]>(`api/modifier/${id}/brand/${brandId}`);
   }
   getAllData(brandId) {

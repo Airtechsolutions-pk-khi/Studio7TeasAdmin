@@ -68,7 +68,7 @@ export class AdddeliveryComponent implements OnInit {
     this.f.amount.setValue(obj.amount);
     this.f.deliveryAreaID.setValue(obj.deliveryAreaID);
     this.f.statusID.setValue(obj.statusID === 1 ? true : false);   
-    debugger
+    
     if (obj.brands != "") {
       var stringToConvert = obj.brands;
       this.selectedBrandIds = stringToConvert.split(',').map(Number);

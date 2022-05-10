@@ -86,7 +86,7 @@ export class AppsettingService {
   //   tap(() => this._loading$.next(true)),
   //     this.http.get<Category[]>(url).subscribe(res => {
   //       this.categories = res;
-  //         debugger
+  //         
   //       this._data$.next(this.categories);
   //       this._allData$.next(this.categories);
 
@@ -125,7 +125,7 @@ export class AppsettingService {
     };
   }
   insert(data) {
-    debugger;
+    
     return this.http.post(`api/About/insert`, data)
       .pipe(map(res => {        
         console.log(res);

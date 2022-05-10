@@ -28,7 +28,7 @@ export class OrderdetailsComponent implements OnInit {
     public ts: ToastService,
     public router: Router,
     private route: ActivatedRoute) {
-    debugger
+    
     this.selectedBrand = this.ls.getSelectedBrand().brandID;
 
   }
@@ -44,7 +44,7 @@ export class OrderdetailsComponent implements OnInit {
       if (sid) {
         this.service.getById(sid, this.selectedBrand).subscribe(res => {
           //Set Forms
-          debugger
+          
           this.editForm(res);
         });
       }
@@ -65,7 +65,7 @@ export class OrderdetailsComponent implements OnInit {
     });
   }
   private editForm(obj) {
-    debugger
+    
     this.order = obj.order;
     this.orderDetails = obj.orderDetails;
     this.orderCustomerInfo = obj.customerOrders;

@@ -63,7 +63,7 @@ export class ModifiersComponent implements OnInit {
   }
 
   Edit(modifiers) {
-    debugger;
+    
     this.router.navigate(["admin/modifier/edit", modifiers]);
   }
 

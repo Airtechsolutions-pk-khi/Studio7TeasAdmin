@@ -19,7 +19,7 @@ export class Items {
   isFeatured: boolean;
   calories: number;
   modifiers: string;
- 
+  isApplyDiscount: boolean;
   itemSettingTitle:string;
   isItemSetting:boolean;
 }

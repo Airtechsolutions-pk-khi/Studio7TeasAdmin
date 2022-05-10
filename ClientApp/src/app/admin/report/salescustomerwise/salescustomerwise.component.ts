@@ -49,7 +49,7 @@ export class SalescustomerwiseComponent implements OnInit {
    
   }
   exportAsXLSX(): void {
-    debugger;
+    
     this.excelService.exportAsExcelFile(this.orders, 'Report_Export');
   }
   getData(locaionID) {

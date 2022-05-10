@@ -61,7 +61,7 @@ export class ReportService {
   set sortDirection(sortDirection: SortDirection) { this._set({ sortDirection }); }
 
   get data$() {
-    debugger;
+    
     return this._data$.asObservable();
   }
   get allData$() {

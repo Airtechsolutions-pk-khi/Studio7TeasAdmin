@@ -89,7 +89,7 @@ export class AppsettingsComponent implements OnInit {
     if (this.categoryForm.invalid) { return; }
     this.loading = true;
     this.f.statusID.setValue(this.f.statusID.value === true ? 1 : 2);    
-    debugger;
+    
     if (parseInt(this.f.ID.value) === 0) {
       //Insert appsetting
       this.appsettingService.insert(this.categoryForm.value).subscribe(data => {

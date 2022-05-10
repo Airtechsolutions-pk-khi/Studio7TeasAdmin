@@ -94,7 +94,7 @@ export class AddbrandComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     this.brandForm.markAllAsTouched();
     this.submitted = true;
 
@@ -136,11 +136,11 @@ export class AddbrandComponent implements OnInit {
     this.fileData = event.target.files[0];
 
     if (this.fileData.type == 'image/jpeg' || this.fileData.type == 'image/jpeg' || this.fileData.type == 'image/jpg') {
-      debugger
+      
       const reader = new FileReader();
       reader.readAsDataURL(this.fileData);
       reader.onload = () => {
-        debugger
+        
         this.imageBgUrl = reader.result;
         this.f.companyURl.setValue(this.imageBgUrl);
 

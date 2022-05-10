@@ -53,7 +53,7 @@ export class LayoutComponent implements OnInit {
     // }
     // else {
     //   this.service.getAllLocations(this.ls.getSelectedBrand().brandID).subscribe((res: any) => {
-    //     debugger
+    //     
     //     if (res.length > 0) {
     //       this.ls.setLocation(res);
     //       this.ls.setSelectedLocation(res[0]);

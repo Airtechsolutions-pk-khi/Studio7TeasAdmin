@@ -26,7 +26,7 @@ function sort(data: Offers[], column: SortColumn, direction: string): Offers[] {
 }
 
 function matches(data: Offers, term: string) {
-  debugger
+  
   return data.fullName.toLowerCase().includes(term.toLowerCase())
 }
 
@@ -135,7 +135,7 @@ export class OffersService {
     };
   }
   insert(data) {
-    debugger
+    
     return this.http.post(`api/offers/insert`, data)
       .pipe(map(res => {
         

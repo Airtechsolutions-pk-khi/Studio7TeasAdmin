@@ -25,7 +25,7 @@ function sort(data: Banner[], column: SortColumn, direction: string): Banner[] {
 }
 
 function matches(data: Banner, term: string) {
-  debugger
+  
   return data.name.toLowerCase().includes(term.toLowerCase())
 }
 
@@ -82,7 +82,7 @@ export class BannerService {
     tap(() => this._loading$.next(true)),
       this.http.get<Banner[]>(url).subscribe(res => {
         this.Banner = res;
-        debugger
+        
         this._data$.next(this.Banner);
         this._allData$.next(this.Banner);
 
@@ -134,7 +134,7 @@ export class BannerService {
     };
   }
   insert(data) {
-    debugger
+    
     return this.http.post(`api/banner/insert`, data)
       .pipe(map(res => {
 

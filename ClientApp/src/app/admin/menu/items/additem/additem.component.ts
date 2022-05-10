@@ -53,6 +53,7 @@ export class AdditemsComponent implements OnInit {
       description: [''],
       statusID: [true],
       isFeatured: [false],
+      isApplyDiscount: [true],
       displayOrder: [0],
       cost: [0],
       categoryID: [null],
@@ -77,13 +78,12 @@ export class AdditemsComponent implements OnInit {
     this.f.calories.setValue(obj.calories);
     this.f.itemID.setValue(obj.itemID);
 
-    debugger
     if (obj.modifiers != "") {
       var stringToConvert = obj.modifiers;
       this.selectedModifierIds = stringToConvert.split(',').map(Number);
       this.f.modifiers.setValue(obj.modifiers);
     }
-    debugger
+    
     if (obj.addons != "") {
       var stringToConvert = obj.addons;
       this.selectedAddonIds = stringToConvert.split(',').map(Number);
@@ -94,12 +94,13 @@ export class AdditemsComponent implements OnInit {
     this.f.description.setValue(obj.description);
     this.f.statusID.setValue(obj.statusID === 1 ? true : false);
     this.f.isFeatured.setValue(obj.isFeatured);
+    this.f.isApplyDiscount.setValue(obj.isApplyDiscount);
     this.imgComp.imageUrl = obj.image;
 
   }
 
   setSelecteditem() {
-    debugger
+    
     this.route.paramMap.subscribe(param => {
       const sid = +param.get('id');
       if (sid) {

@@ -65,7 +65,7 @@ export class SalesdetailComponent implements OnInit {
     return obj.year + "-" + obj.month + "-" + obj.day;;
   }
   exportAsXLSX(): void {
-    debugger;
+    
     this.excelService.exportAsExcelFile(this.orderDetails, 'Report_Export');
   }
   loadLocations() {

@@ -119,7 +119,7 @@ export class OrdersComponent implements OnInit {
     return of(items).pipe(delay(500));
   }
   Filter() {
-    debugger
+    
     this.getData(this.selectedLocations.toString());
   }
   printout(html) {

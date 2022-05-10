@@ -92,7 +92,7 @@ export class AddcategoryComponent implements OnInit {
     this.loading = true;
     this.f.statusID.setValue(this.f.statusID.value === true ? 1 : 2);
     this.f.image.setValue(this.imgComp.imageUrl);
-    debugger
+    
     if (parseInt(this.f.categoryID.value) === 0) {
       //Insert category
       this.categoryService.insert(this.categoryForm.value).subscribe(data => {

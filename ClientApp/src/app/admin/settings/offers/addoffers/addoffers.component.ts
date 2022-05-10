@@ -57,7 +57,7 @@ export class AddoffersComponent implements OnInit {
   }
 
   private editForm(obj) {
-    debugger
+    
     this.f.name.setValue(obj.name);
     this.f.description.setValue(obj.description);
     this.f.offerID.setValue(obj.offerID);
@@ -96,7 +96,7 @@ export class AddoffersComponent implements OnInit {
 
     if (parseInt(this.f.offerID.value) === 0) {
       //Insert offers
-      debugger
+      
       this.offersService.insert(this.offersForm.value).subscribe(data => {
         if (data != 0) {
           this.ts.showSuccess("Success","Record added successfully.")

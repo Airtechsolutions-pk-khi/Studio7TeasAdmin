@@ -53,7 +53,7 @@ export class AddaddonsComponent implements OnInit {
   }
 
   private editForm(obj) {
-    debugger;
+    
     this.f.name.setValue(obj.name);
     this.f.arabicName.setValue(obj.arabicName);
     this.f.displayOrder.setValue(obj.displayOrder);
@@ -66,7 +66,7 @@ export class AddaddonsComponent implements OnInit {
   }
 
   setSelectedaddon() {
-    debugger;
+    
     this.route.paramMap.subscribe(param => {
       const sid = +param.get('id');
       if (sid) {
@@ -82,7 +82,7 @@ export class AddaddonsComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    
     this.addonForm.markAllAsTouched();
     this.submitted = true;
     if (this.addonForm.invalid) { return; }

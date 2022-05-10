@@ -37,6 +37,7 @@ namespace StudioAdmin._Models
         public Nullable<System.DateTime> LastUpdatedDate { get; set; }
         public int StatusID { get; set; }
         public bool IsFeatured { get; set; }
+        public bool? IsApplyDiscount { get; set; }
         public double Calories { get; set; }
         public string Modifiers { get; set; }
         public string Addons { get; set; }
