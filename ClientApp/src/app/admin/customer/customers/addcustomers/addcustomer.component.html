@@ -1,0 +1,79 @@
+<h1 class="h3 mb-2 text-gray-800">Add Customer</h1>
+<p class="mb-4"></p>
+
+<form [formGroup]="customerForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">Customer Details</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputUsername">Name</label>
+                                <input type="text" class="form-control" id=Name placeholder="" formControlName="fullName">
+                                <div *ngIf="f.fullName.invalid && (f.fullName.dirty || f.fullName.touched)" class="alert alert-danger">
+                                    <div *ngIf="f.fullName.errors.required">
+                                        Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form Row-->
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="small mb-1" for="inputFirstName">Email</label>
+                                    <input type="email" class="form-control" id=email placeholder="" formControlName="email">
+                                    <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.email.errors.required">
+                                            Email is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="small mb-1" for="inputLastName">Password</label>
+                                    <input type="text" class="form-control" id=password placeholder="" formControlName="password">
+                                    <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.password.errors.required">
+                                            Password is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="small mb-1" for="inputLastName">Mobile</label>
+                                    <input type="text" class="form-control" id=mobile placeholder="" formControlName="mobile">
+                                    <div *ngIf="f.mobile.invalid && (f.mobile.dirty || f.mobile.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.mobile.errors.required">
+                                            Contact is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 text-center">
+                            <app-imageupload></app-imageupload>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-lg-12">
+                            <label for="Item Status">Status</label>
+                            <div class="custom-control custom-switch custom-switch-md">
+                                <input type="checkbox" class="custom-control-input" checked id="statusID" formControlName="statusID">
+                                <label class="custom-control-label" for="statusID"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,73 @@
+<h1 class="h3 mb-2 text-gray-800">Add Area</h1>
+<p class="mb-4"></p>
+
+<form [formGroup]="deliveryForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">Delivery Area Details</div>
+                <div class="card-body">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+            
+                                        <label class="small mb-1" for="inputLocation">Brands</label>
+                                        <ng-select [items]="BrandsList" bindLabel="name" bindValue="brandID" [multiple]="true" placeholder="" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedBrandIds">
+                                            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                                                <div class="ng-value" *ngFor="let item of items">
+                                                    <span class="ng-value-label">{{item.name}}</span>
+                                                    <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                                                </div>
+            
+                                            </ng-template>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputUsername">Name</label>
+                                <input type="text" class="form-control" id=name placeholder="" formControlName="name">
+                                <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+                                    <div *ngIf="f.name.errors.required">
+                                        Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form Row-->
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="small mb-1" for="inputFirstName">Amount</label>
+                                    <input type="number" class="form-control" id=amount placeholder="" formControlName="amount">
+                                    <div *ngIf="f.amount.invalid && (f.amount.dirty || f.amount.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.amount.errors.required">
+                                            Amount is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                     
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-lg-12">
+                            <label for="Item Status">Status</label>
+                            <div class="custom-control custom-switch custom-switch-md">
+                                <input type="checkbox" class="custom-control-input" checked id="statusID" formControlName="statusID">
+                                <label class="custom-control-label" for="statusID"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit" >Save changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

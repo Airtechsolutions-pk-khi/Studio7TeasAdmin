@@ -1,0 +1,91 @@
+﻿
+<style>
+
+    #invoice-POS {
+        font-family: serif;
+        padding: 2mm;
+        margin: 0 auto;
+        width: 80mm !important;
+        background: #FFF;
+    }
+
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 1px 0 !important;
+    }
+</style>
+<div id="invoice-POS">
+
+    <center id="top">
+       <img src="http://studio7teas-001-site2.mysitepanel.net/assets/img/logo.png" width="150px"/>
+        <h3 style="padding:12px 0">#receipttype#</h3>
+        #orderno#
+        <hr style="border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" />
+        <p> <b>Name: #companyname#</b></p>
+        <p> <b>Address:  #address#</b></p>
+        <p> <b>Contact: #contact#</b></p>
+        <p> <b>Email: #email#</b></p>
+    </center>
+    <hr style="border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" />
+
+    <p> <b>Invoice No: #transactionno#</b></p>
+    <p> <b>Order Date: #orderdate#</b></p>
+
+    #customerdata#
+    <div id="table">
+        <table style="width:100%;">
+            <tr>
+                <td colspan="5"><hr style="margin:0;border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" /> </td>
+            </tr>
+            <tr>
+                <td width="40%"><h5>Name</h5></td>
+                <td width="10%"><h5>Qty</h5></td>
+                <td width="20%"><h5>U.Price</h5></td>
+                <td width="20%"><h5>Price</h5></td>
+
+            </tr>
+            <tr style="border-bottom: 1px solid #000;">
+                <td colspan="5"> <hr style="margin:0; border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" /></td>
+            </tr>
+            #orderitems#
+
+            <tr>
+                <td colspan="5"> <hr style=" margin:0;border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" /></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><h5>Total</h5></td>
+                <td></td>
+                <td colspan="2" style="text-align:right;"><h5>#total#</h5></td>
+            </tr>
+            <tr>
+                <td colspan="2"><h5>Discount</h5></td>
+                <td></td>
+                <td colspan="2" style="text-align:right;"><h5>#discount#</h5></td>
+            </tr>
+            <tr>
+                <td colspan="2"><h5>Tax (inc SST) 13%</h5></td>
+                <td></td>
+                <td colspan="2" style="text-align:right;"><h5>#tax#</h5></td>
+            </tr>
+            <tr>
+                <td colspan="2"><h5>Delivery Charges</h5></td>
+                <td></td>
+                <td colspan="2" style="text-align:right;"><h5>#deliverycharges#</h5></td>
+            </tr>
+            <tr>
+                <td colspan="5"> <hr style=" margin:0;border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><h3>Grand Total</h5></td>
+
+                <td colspan="3" style="text-align:right;"> <h3>#grandtotal#</h5></td>
+            </tr>
+        </table>
+    </div>
+    <hr style="border-top:1px solid #000;border-bottom:1px solid #000;background: #000;" />
+    <center>#footernotes#</center>
+    <br />
+    <p style="margin:10px;font-size:14px;text-align:center">
+        <strong>Powered by airtechsolutions.me</strong>
+    </p>
+</div>

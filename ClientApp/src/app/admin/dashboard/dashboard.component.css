@@ -1,0 +1,16 @@
+.card-body{
+    padding: 20px;
+}
+
+  .advanced-pie-legend-wrapper{display: none !important;}
+
+  .dashboard-labels{
+      font-size: 13px;
+  }
+  ngx-charts-advanced-pie-chart:first-child{
+height:200px ;
+  }
+
+  .content-wrapper-padding{
+    padding-top: 4rem;
+}

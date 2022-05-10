@@ -1,0 +1,138 @@
+<h1 class="h3 mb-2 text-gray-800">Add Item</h1>
+<p class="mb-4"></p>
+
+<form [formGroup]="itemsForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">Item Details</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="small mb-1" for="inputUsername">Category</label>
+                                    <select class="custom-select" formControlName="categoryID"> 
+
+                                <option [ngValue]="option.categoryID"  selected="option.categoryID == categoryID"
+                                    *ngFor="let option of Categories">
+                                    {{option.name}}
+                                </option>
+                            </select>
+                                </div>
+                            </div>
+                            <!-- Form Row-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputUsername">Name</label>
+                                    <input type="text" class="form-control" id=Name placeholder="" formControlName="name">
+                                    <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.name.errors.required">
+                                            Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputFirstName">Arabic Name</label>
+                                    <input type="text" class="form-control" id=arabicName placeholder="" formControlName="arabicName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputLastName">Display Order</label>
+                                    <input type="number" class="form-control" id=displayOrder placeholder="" formControlName="displayOrder">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputLastName">Calories</label>
+                                    <input type="number" class="form-control" id=calories placeholder="" formControlName="calories">
+                                    <div *ngIf="f.calories.invalid && (f.calories.dirty || f.calories.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.calories.errors.required">
+                                            Calories is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputLastName">Cost</label>
+                                    <input type="number" class="form-control" id=cost placeholder="" formControlName="cost">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small mb-1" for="inputLastName">Price</label>
+                                    <input type="number" class="form-control" id=price placeholder="" formControlName="price">
+                                    <div *ngIf="f.price.invalid && (f.name.dirty || f.price.touched)" class="alert alert-danger">
+                                        <div *ngIf="f.price.errors.required">
+                                            Price is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 text-center">
+                            <app-imageupload></app-imageupload>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+                            <label class="small mb-1" for="inputLocation">Attach Modifiers</label>
+                            <ng-select [items]="ModifiersList" bindLabel="name" bindValue="modifierID" [multiple]="true" placeholder="" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedModifierIds">
+                                <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                                    <div class="ng-value" *ngFor="let item of items">
+                                        <span class="ng-value-label">{{item.name}}</span>
+                                        <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                                    </div>
+
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+                            <label class="small mb-1" for="inputLocation">Attach Addons</label>
+                            <ng-select [items]="AddonsList" bindLabel="name" bindValue="addonID" [multiple]="true" placeholder="" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedAddonIds">
+                                <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                                    <div class="ng-value" *ngFor="let item of items">
+                                        <span class="ng-value-label">{{item.name}}</span>
+                                        <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                                    </div>
+
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+                            <label class="small mb-1" for="inputLocation">Description</label>
+                            <textarea class="form-control" formControlName="description" height="100px"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label for="Item Status">Status</label>
+                            <div class="custom-control custom-switch custom-switch-md">
+                                <input type="checkbox" class="custom-control-input" checked id="statusID" formControlName="statusID">
+                                <label class="custom-control-label" for="statusID"></label>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="Item Status">Is Featured</label>
+                            <div class="custom-control custom-switch custom-switch-md">
+                                <input type="checkbox" class="custom-control-input" checked id="isFeatured" formControlName="isFeatured">
+                                <label class="custom-control-label" for="isFeatured"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

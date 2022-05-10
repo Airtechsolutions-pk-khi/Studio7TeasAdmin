@@ -1,0 +1,13 @@
+.nav-bar-inner-spaces{
+  display: -webkit-box;  
+}
+
+.horizontal-menu .bottom-navbar .page-navigation > .nav-item{
+    margin-right: 10px;
+}
+.flag-icon-us {
+  font-size: 17PX !important;
+}
+.flag-icon-sa {
+  font-size: 17PX !important;
+}

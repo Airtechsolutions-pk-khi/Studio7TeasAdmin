@@ -1,0 +1,300 @@
+<!-- Page Heading -->
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="m-0 font-weight-bold text-orange">Order Details - <span class="badge badge-info"> {{ order.statusID == 100 ? "Delivered" : order.statusID==101 ?"Order confirmed" : order.statusID == 102? "Order prepared" : order.statusID == 103? " Order out for delivery" : order.statusID == 104? "Order Cancelled" : "-" }}</span></h6>
+            </div>
+            <div class="col-md-6 text-right">
+
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12 mb-4" *ngIf="order.statusID!=100">
+                <div class="card border-left-info shadow mb-4">
+                    <div class="card-header border-bottom-0">Order Status</div>
+                    <div class="card-body">
+                      <div class="">
+                        <button class="btn btn-warning mr-1" (click)="updateOrder(order,102)" *ngIf="order.statusID!=102">
+                          <i class="fas fa-check-circle"></i> Prepared
+                        </button>
+                        <button class="btn btn-info mr-1" (click)="updateOrder(order,103)" *ngIf="order.statusID!=103">
+                          <i class="fas fa-truck"></i> Out For Delivery
+                        </button>
+                        <button class="btn btn-success mr-1" (click)="updateOrder(order,100)" *ngIf="order.statusID!=100">
+                          <i class="fas fa-people-carry"></i> Delivered
+                        </button>
+                        <button class="btn btn-danger mr-1" (click)="updateOrder(order,104)">
+                          <i class="fas fa-people-carry"></i> Cancelled
+                        </button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+
+                <div class="card border-left-success shadow mb-4">
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header border-bottom-0">Customer Information</div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                      Customer Name
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderCustomerInfo.name }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                     Email
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderCustomerInfo.email }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                      Address
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderCustomerInfo.addressNickName }}</div>
+
+
+
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                    Google Address
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderCustomerInfo.address }} | Latitude: {{ orderCustomerInfo.latitude }}| Longitude: {{ orderCustomerInfo.longitude }}</div>
+
+
+
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                       Contact Number
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderCustomerInfo.mobile }}</div>
+                            </div>
+                            <!-- <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                     Location URL
+                                    </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">19th Oct 2020</div>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-left-warning shadow ">
+
+                    <div class="card-body">
+
+                        <!-- Report summary card example-->
+                        <div class="card">
+                            <div class="card-header border-bottom-0">Order Information</div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                           Order No
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.orderNo }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                           Transaction No
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.transactionNo }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                           Order Type
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.orderType=='1'?'Home': order.orderType=='2'?'Work':'Other' }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                          Order Date
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.orderDate | date }}</div>
+                            </div>
+                            <!-- <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                          Prepared Date
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.orderPreparedDate | date }}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                          Out for Delivery Date
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ order.orderOFDDate | date }}</div>
+                            </div> -->
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                         Status
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="mr-2">
+                                    {{ order.statusID == 100 ? "Delivered" : order.statusID==101 ?"Order confirmed" : order.statusID == 102? "Order prepared" : order.statusID == 103? " Order out for delivery" : order.statusID == 104? "Order Cancelled" : "-" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card border-left-danger shadow mb-4">
+
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header border-bottom-0">Billing Information</div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                  Amount Total
+                                </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ (orderOrderCheckout.amountTotal | number : '1.2-2')}}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                  Discount
+                                </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderOrderCheckout.discountAmount | number : '1.2-2'}}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                  Tax
+                                </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderOrderCheckout.tax | number : '1.2-2'}}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                                  Service Charges
+                                </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderOrderCheckout.serviceCharges | number : '1.2-2'}}</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" href="#!">
+                           Grand Total
+                                </a>
+                                    </div>
+                                </div>
+                                <div class="mr-2">{{ orderOrderCheckout.grandTotal | number : '1.2-2'}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-left-primary shadow">
+
+                    <div class="card-body">
+                        <div class="tile-body p-0 table-responsive ">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr class="table-header">
+                                        <th width="50%">Name </th>
+                                        <th width="25">Quantity</th>
+                                        <th width="25">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of orderDetails ">
+                                        <td> {{item.name}}
+                                            <tr *ngFor="let item1 of item.orderDetailModifiers ">
+                                                <td class="badge badge-pill">Modifier: {{item1.modifierName }} [{{item.Quantity}}X {{item1.price}} ] </td>
+
+                                            </tr>
+                                        </td>
+                                        <td> {{item.quantity}} </td>
+                                        <td> {{item.price}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>

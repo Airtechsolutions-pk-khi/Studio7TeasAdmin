@@ -1,0 +1,138 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Report</h1>
+<p class="mb-4"></p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="m-0 font-weight-bold text-orange">Sales Summary</h6>
+            </div>
+            <div class="col-md-6 text-right">
+
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+
+            <div class="col-md-9 form-group">
+                <label>Select Date</label>
+                <ngbd-datepicker-range-popup></ngbd-datepicker-range-popup>
+            </div>
+            <div class="col-md-3 form-group">
+                <button type="submit" class="btn btn-primary mt-4 mr-1" (click)="exportAsXLSX()">
+                    <span translate>Export</span>
+                </button>
+                <button class="btn btn-primary mt-4" (click)="getData()" type="submit">Search</button>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+
+
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Sales</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalSales}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Tax</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalTax}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Discount</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalDiscount}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total NetSales</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalNetSales}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+
+
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Orders</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalSalesOrders}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Delivery Orders</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalDeliveryOrders}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total PickUp Orders</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalPickUpOrders}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Cancel Orders</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{_model.totalCancelOrders}}</div>
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
