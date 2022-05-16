@@ -94,6 +94,7 @@ export class AdditemsComponent implements OnInit {
     this.f.description.setValue(obj.description);
     this.f.statusID.setValue(obj.statusID === 1 ? true : false);
     this.f.isFeatured.setValue(obj.isFeatured);
+    obj.isApplyDiscount = obj.isApplyDiscount == null ? true : obj.isApplyDiscount;
     this.f.isApplyDiscount.setValue(obj.isApplyDiscount);
     this.imgComp.imageUrl = obj.image;
 
