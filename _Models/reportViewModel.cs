@@ -90,4 +90,17 @@ namespace StudioAdmin._Models
         public float? Profit { get; set; }
 
     }
+    public class DeliveryBoyDetailBLL
+    {
+        public string DBName { get; set; }
+        public string DBAddress { get; set; }
+        public string DBContactNo { get; set; }
+        public string DBVehicleNo { get; set; }
+        public string DBCNICNo { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public int? BrandID { get; set; }
+        public int? StatusID { get; set; }
+        public int? Amount { get; set; }
+
+    }
 }

@@ -140,6 +140,63 @@ namespace BAL.Repositories
                 return new List<SalesCategorywiseBLL>();
             }
         }
+        public List<DeliveryBoyDetailBLL> GetDeliveryBoyDetailRpt(int brandID, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var lst = new List<DeliveryBoyDetailBLL>();
+
+                SqlParameter[] p = new SqlParameter[3];
+                p[0] = new SqlParameter("@brandid", brandID);
+                p[1] = new SqlParameter("@fromdate", FromDate);
+                p[2] = new SqlParameter("@todate", ToDate);
+
+
+                _dt = (new DBHelper().GetTableFromSP)("sp_rptDeliveryBoysDetailReport", p);
+                if (_dt != null)
+                {
+                    if (_dt.Rows.Count > 0)
+                    {
+                        lst = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<DeliveryBoyDetailBLL>>();
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                return new List<DeliveryBoyDetailBLL>();
+            }
+        }
+        public List<OrderReportBLL> OrderReportByType(int brandId, int orderType, int locationId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var lst = new List<OrderReportBLL>();
+
+                SqlParameter[] p = new SqlParameter[5];
+                p[0] = new SqlParameter("@brandId", brandId);
+                p[1] = new SqlParameter("@orderType", orderType);
+                p[2] = new SqlParameter("@locationid", locationId);
+                p[3] = new SqlParameter("@fromdate", FromDate);
+                p[4] = new SqlParameter("@todate", ToDate);
+
+
+                _dt = (new DBHelper().GetTableFromSP)("sp_rptSalesOrdersReportByType", p);
+                if (_dt != null)
+                {
+                    if (_dt.Rows.Count > 0)
+                    {
+                        lst = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<OrderReportBLL>>();
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                return new List<OrderReportBLL>();
+            }
+        }
+
         public List<SalesUserwiseBLL> GetSalesUserwiseRpt(int brandID, string locationID, DateTime FromDate, DateTime ToDate)
         {
             try

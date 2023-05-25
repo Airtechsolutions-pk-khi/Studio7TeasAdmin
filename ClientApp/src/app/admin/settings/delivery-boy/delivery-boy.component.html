@@ -1,0 +1,88 @@
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Delivery</h1>
+<p class="mb-4"></p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="m-0 font-weight-bold text-orange">Delivery Boy</h6>
+            </div>
+            <div class=" col-lg-4 input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control search-filter" placeholder="Filter by name" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+            </div>
+            <div class="col-md-2 text-right"> <button [routerLink]="['add']" class="btn btn-primary ">
+                Add Delivery Boy
+            </button></div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="tile-body p-0 table-responsive ">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="table-header">             
+                        <th width="10%" sortable="dbName" (sort)="onSort($event)"> Name </th>
+                        <th width="10%" sortable="dbAddress" (sort)="onSort($event)"> Address </th>
+                        <th width="10%" sortable="dbContactNo" (sort)="onSort($event)"> Contact No. </th>
+                        <th width="10%" sortable="dbVehicleNo" (sort)="onSort($event)"> Vehicle No. </th>
+                        <th width="10%" sortable="dbCNICNo" (sort)="onSort($event)"> CNICNo </th>
+                        <!--<th width="10%" sortable="createdOn" (sort)="onSort($event)"> CreatedOn </th>
+                        <th width="10%" sortable="updatedOn" (sort)="onSort($event)">  UpdatedOn </th>  
+                        <th width="5%" sortable="updatedBy" (sort)="onSort($event)"> UpdatedBy </th>                          
+                        <th width="5%" sortable="createdBy" (sort)="onSort($event)"> CreatedBy </th>-->                 
+                        <th width="5%" sortable="brandID" (sort)="onSort($event)"> BrandID </th> 
+                        <th width="5%" sortable="amount" (sort)="onSort($event)"> Amount </th> 
+                        <th width="5%">Status</th>
+                        <th width="10%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data$ | async ">
+                     
+                        <td> {{item.dbName}} </td>
+                        <td> {{item.dbAddress}} </td>
+                        <td> {{item.dbContactNo}} </td>
+                        <td> {{item.dbVehicleNo}} </td>
+                        <td> {{item.dbcnicNo}} </td>
+                        <!--<td> {{item.createdOn}} </td>
+                        <td> {{item.updatedOn}} </td>
+                        <td> {{item.updatedBy}} </td>
+                        <td> {{item.createdBy}} </td>-->
+                        <td> {{item.brandID}} </td>
+                        <td> {{item.amount}} </td>
+                        <td>
+                            <ngb-highlight [ngClass]="{'btn-warning': item.statusID === 2, 'btn-success': item.statusID === 1 }" class="btn btn-sm" [result]="item.statusID ==1?'Active':'InActive' && item.statusID ==2?'InActive':'Active'" [term]="service.searchTerm">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <a (click)="Edit(item.deliveryBoyID)"><i class="fas fa-fw fa-edit"></i> </a>
+                            <a (click)="Delete(item)"><i class="fas fa-fw fa-trash-alt"></i> </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <p class="pagination-count">
+                    Showing
+                    <strong>{{(service.pageSize * service.page)-9}}</strong> to
+                    <strong>{{(service.pageSize * service.page) > (total$ | async)!?(total$ | async)!:service.pageSize * service.page}}</strong> of
+                    <strong>{{(total$ | async)!}}</strong> results
+                </p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <ngb-pagination [collectionSize]="(total$ | async)!" class="float-right" [(page)]="service.page" [pageSize]="service.pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

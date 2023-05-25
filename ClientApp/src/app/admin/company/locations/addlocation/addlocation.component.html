@@ -66,7 +66,27 @@
               <label class="small mb-1" for="inputFirstName">Close Time</label>
               <ngb-timepicker [(ngModel)]="closetime" [ngModelOptions]="{standalone: true}" [meridian]="true"></ngb-timepicker>
             </div>
-
+            <div class="form-group col-md-6">
+              <label class="small mb-1" for="inputFirstName">Delivery Allow</label>
+              <div class="custom-control custom-switch custom-switch-md">
+                <input type="checkbox" class="custom-control-input" checked id="isDeliveryAllowed" formControlName="isDeliveryAllowed">
+                <label class="custom-control-label" for="isDeliveryAllowed"></label>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="small mb-1" for="inputFirstName">Pickup Allow</label>
+              <div class="custom-control custom-switch custom-switch-md">
+                <input type="checkbox" class="custom-control-input" checked id="isPickupAllowed" formControlName="isPickupAllowed">
+                <label class="custom-control-label" for="isPickupAllowed"></label>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="small mb-1" for="inputFirstName">DineIn Allow</label>
+              <div class="custom-control custom-switch custom-switch-md">
+                <input type="checkbox" class="custom-control-input" checked id="isDineInAllowed" formControlName="isDineInAllowed">
+                <label class="custom-control-label" for="isDineInAllowed"></label>
+              </div>
+            </div>
             <!-- <div class="form-group col-md-6">
       <label class="small mb-1" for="inputFirstName">Latitude</label>
       <input type="text" class="form-control" id=latitude placeholder="" formControlName="latitude">

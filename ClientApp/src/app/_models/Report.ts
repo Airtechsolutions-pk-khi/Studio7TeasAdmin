@@ -70,3 +70,33 @@ export class SalescategorywiseReport {
   profit: string;
   itemID: string;
 }
+export class DeliveryboydetailReport {
+  dbName: string;
+  dBAddress: string;
+  dBContactNo: string;
+  dBVehicleNo: string;
+  dBCNICNo: string;
+  createdOn: string;
+  brandID: number;
+  statusID: number;
+  amount: number;
+}
+export class DeliveryboyfinancialReport {
+  dbName: string;
+  dbContactNo: string;
+  amount: number;
+  orderID: number;
+  orderDate: string;
+  totalPrice: number;
+}
+export class OrderReportbyType {
+  orderID: number;
+  orderNo: number;
+  transactionNo: number;
+  name: string;
+  mobile: string;
+  amountTotal: number;
+  orderDate: string;
+  orderType: string;
+  statusID: number;
+}

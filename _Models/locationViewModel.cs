@@ -32,6 +32,9 @@ namespace StudioAdmin._Models
         public string Opentime { get; set; }
 
         public string Closetime{ get; set; }
+        public int IsPickupAllowed { get; set; }
+        public int IsDeliveryAllowed { get; set; }
+        public int IsDineInAllowed { get; set; }
         public string LastUpdatedBy { get; set; }
         public Nullable<System.DateTime> LastUpdatedDate { get; set; }
         public int StatusID { get; set; }

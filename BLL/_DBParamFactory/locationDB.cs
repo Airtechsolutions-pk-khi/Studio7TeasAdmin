@@ -84,7 +84,7 @@ namespace BAL.Repositories
             try
             {
                 int rtn = 0;
-                SqlParameter[] p = new SqlParameter[24];
+                SqlParameter[] p = new SqlParameter[27];
 
                 p[0] = new SqlParameter("@Name", data.Name);
                 p[1] = new SqlParameter("@Description", data.Description);
@@ -110,6 +110,9 @@ namespace BAL.Repositories
                 p[21] = new SqlParameter("@Currency", data.Currency);
                 p[22] = new SqlParameter("@Discounts", data.Discounts);
                 p[23] = new SqlParameter("@Tax", data.Tax);
+                p[24] = new SqlParameter("@IsPickupAllowed", data.IsPickupAllowed);
+                p[25] = new SqlParameter("@IsDeliveryAllowed", data.IsDeliveryAllowed);
+                p[26] = new SqlParameter("@IsDeliveryAllowed", data.IsDineInAllowed);
                 rtn = (new DBHelper().ExecuteNonQueryReturn)("dbo.sp_insertLocation_Admin", p);
               
                 return rtn;
@@ -125,7 +128,7 @@ namespace BAL.Repositories
             try
             {
                 int rtn = 0;
-                SqlParameter[] p = new SqlParameter[24];
+                SqlParameter[] p = new SqlParameter[27];
 
                 p[0] = new SqlParameter("@Name", data.Name);
                 p[1] = new SqlParameter("@Description", data.Description);
@@ -151,6 +154,9 @@ namespace BAL.Repositories
                 p[21] = new SqlParameter("@Currency", data.Currency);
                 p[22] = new SqlParameter("@Discounts", data.Discounts);
                 p[23] = new SqlParameter("@Tax", data.Tax);
+                p[24] = new SqlParameter("@IsPickupAllowed", data.IsPickupAllowed);
+                p[25] = new SqlParameter("@IsDeliveryAllowed", data.IsDeliveryAllowed);
+                p[26] = new SqlParameter("@IsDeliveryAllowed", data.IsDineInAllowed);
                 rtn = (new DBHelper().ExecuteNonQueryReturn)("dbo.sp_updateLocation_Admin", p);
 
                 return rtn;

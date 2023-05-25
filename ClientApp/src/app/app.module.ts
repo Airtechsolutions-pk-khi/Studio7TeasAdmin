@@ -49,10 +49,15 @@ import { OrderdetailsComponent } from './admin/sales/orderdetails/orderdetails.c
 import { ItemsettingsComponent } from './admin/menu/items/itemsettings/itemsettings.component';
 import { ExcelService } from 'src/ExportExcel/excel.service';
 import { DeliveryComponent } from './admin/settings/delivery/delivery.component';
-import { AdddeliveryComponent } from './admin/settings/Delivery/adddelivery/adddelivery.component';
+
 import { AppsettingsComponent } from './admin/settings/appsettings/appsettings.component';
 import { AddonsComponent } from './admin/menu/addons/addons.component';
 import { AddaddonsComponent } from './admin/menu/addons/addaddons/addaddons.component';
+import { DeliveryBoyComponent } from './admin/settings/delivery-boy/delivery-boy.component';
+import { AdddeliveryboyComponent } from './admin/settings/delivery-boy/adddeliveryboy/adddeliveryboy.component';
+import { AdddeliveryComponent } from './admin/settings/delivery/adddelivery/adddelivery.component';
+import { DeliveryboydetailComponent } from './admin/report/deliveryboydetail/deliveryboydetail.component';
+import { OrderbytypeComponent } from './admin/report/orderbytype/orderbytype.component';
 
 
 
@@ -98,6 +103,10 @@ import { AddaddonsComponent } from './admin/menu/addons/addaddons/addaddons.comp
     AppsettingsComponent,
     AddonsComponent,
     AddaddonsComponent,
+    DeliveryBoyComponent,
+    AdddeliveryboyComponent,
+    DeliveryboydetailComponent,
+    OrderbytypeComponent
     
     
   ],
@@ -159,6 +168,8 @@ import { AddaddonsComponent } from './admin/menu/addons/addaddons/addaddons.comp
           { path: 'report/salescustomerwise', component: SalescustomerwiseComponent },
           { path: 'report/salescategorywise', component: SalescategorywiseComponent },
           { path: 'report/salesitemwise', component: SalesitemwiseComponent },
+          { path: 'report/deliveryboydetail', component: DeliveryboydetailComponent },
+          { path: 'report/orderbytype', component: OrderbytypeComponent },
 
           { path: 'delivery', component: DeliveryComponent },
           { path: 'delivery/add', component: AdddeliveryComponent },
@@ -170,6 +181,9 @@ import { AddaddonsComponent } from './admin/menu/addons/addaddons/addaddons.comp
           { path: 'addons/add', component: AddaddonsComponent },
           { path: 'addons/edit/:id', component: AddaddonsComponent },
        
+          { path: 'deliveryBoy', component: DeliveryBoyComponent },
+          { path: 'deliveryBoy/add', component: AdddeliveryboyComponent },
+          { path: 'deliveryBoy/edit/:id', component: AdddeliveryboyComponent },
         ]
       }
     ]),

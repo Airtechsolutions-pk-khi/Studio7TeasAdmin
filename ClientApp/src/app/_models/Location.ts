@@ -21,4 +21,7 @@ export class Location {
   disabled: any;
   discounts: number;
   tax: number;
+  isPickupAllowed:number;
+  isDeliveryAllowed:number;
+  isDineInAllowed:number;
 }

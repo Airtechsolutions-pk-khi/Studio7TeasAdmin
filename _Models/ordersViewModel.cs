@@ -53,6 +53,8 @@ namespace StudioAdmin._Models
         public string CustomerMobile { get; set; }
         public string CustomerAddress { get; set; }
         public string LocationName { get; set; }
+
+        public string DeliveryBoyID { get; set; }
     }
     public partial class OrderDetailBLL
     {
@@ -84,6 +86,18 @@ namespace StudioAdmin._Models
         public Nullable<int> StatusID { get; set; }
         public string LastUpdateBy { get; set; }
         public Nullable<System.DateTime> LastUpdateDT { get; set; }
+    }
+    public class OrderReportBLL
+    {
+        public int OrderID { get; set; }
+        public int TransactionNo { get; set; }
+        public int OrderNo { get; set; }
+        public string Name { get; set; }
+        public string Mobile { get; set; }
+        public double Amount { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string OrderType { get; set; }
+        public int StatusID { get; set; }
     }
     public class OrderCheckoutBLL
     {

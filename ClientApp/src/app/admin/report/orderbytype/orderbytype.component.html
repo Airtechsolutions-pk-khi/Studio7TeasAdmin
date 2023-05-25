@@ -14,30 +14,46 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-5 form-group">
+            <div class="col-md-8 form-group">
                 <label>Select Date</label>
                 <ngbd-datepicker-range-popup></ngbd-datepicker-range-popup>
             </div>
 
-            <div class=" col-lg-4 input-group mb-3"style="padding-top: 25px;">
+            <div class=" col-md-4 input-group mb-3" style="padding-top: 25px;">
                 <div class="input-group-prepend" style="height: 39px;">
                     <span class="input-group-text"><i class="fa fa-search"></i></span>
                 </div>
-                <input class="form-control search-filter" placeholder="Filter by name" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+                <input class="form-control search-filter" placeholder="Filter by name" type="text" name="searchTerm"
+                    [(ngModel)]="service.searchTerm" />
             </div>
 
+            <div class="col-md-6 form-group text-right"  style="padding-top: 25px;">
+                <select class="form-control" [(ngModel)]="this.orderType">
+                    <option value="0" selected>--Select Order Type--</option>
+                    <option value="1" >Delivery</option>
+                    <option value="2" >Pick Up</option>
+                    <option value="3" >Dine In</option>
+                </select>                                                                      
+            </div>
+            <div class="col-md-3">
 
+            </div>
             <div class="col-md-3 form-group text-right">
-                <!-- <button type="submit" class="btn btn-primary mt-4 mr-1" (click)="exportAsXLSX()">
-                    <span translate>Export</span>
-                </button> -->
-                <button class="btn btn-primary mt-4" (click)="Filter()" type="submit">Search</button>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary mt-4 mr-1" (click)="exportAsXLSX()">
+                        <span>Export</span>
+                    </button>
+                    <button class="btn btn-primary mt-4" (click)="Filter()" type="submit">Search</button>
+                </div>
             </div>
+
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
                 <label for="inputUsername">Select Location</label>
-                <ng-select [items]="Locations" [multiple]="true" bindLabel="name" [selectableGroup]="true" [selectableGroupAsModel]="false" [closeOnSelect]="false" bindValue="locationID" [(ngModel)]="selectedLocations">
+                <ng-select [items]="Locations" [multiple]="true" bindLabel="name" [selectableGroup]="true"
+                    [selectableGroupAsModel]="false" [closeOnSelect]="false" bindValue="locationID"
+                    [(ngModel)]="selectedLocations">
                     <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
                         <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" /> {{item.locationID }}
                     </ng-template>
@@ -51,14 +67,14 @@
             <table class="table table-striped">
                 <thead>
                     <tr class="table-header">
-                        <th width="10%" sortable="orderNo" (sort)="onSort($event)"> Order # </th>
-                        <th width="10%" sortable="transactionNo" (sort)="onSort($event)">Trans # </th>
-                        <th width="15%" sortable="customerName" (sort)="onSort($event)">Name </th>
-                        <th width="10%" sortable="customerMobile" (sort)="onSort($event)">Contact </th>
-                        <th width="10%" sortable="grandTotal" (sort)="onSort($event)">Total </th>
-                        <th width="10%" sortable="orderDate" (sort)="onSort($event)">Date </th>
-                        <th width="10%" sortable="orderType" (sort)="onSort($event)">Order Type </th>
-                        <th width="10%" sortable="statusID" (sort)="onSort($event)">Status </th>
+                        <th width="10%"> Order # </th>
+                        <th width="10%">Trans # </th>
+                        <th width="15%">Name </th>
+                        <th width="10%">Contact </th>
+                        <th width="10%">Total </th>
+                        <th width="10%">Date </th>
+                        <th width="10%">Order Type </th>
+                        <th width="10%">Status </th>
                         <th width="5%"></th>
                     </tr>
                 </thead>
@@ -67,17 +83,18 @@
 
                         <td> {{item.orderNo}} </td>
                         <td> {{item.transactionNo}} </td>
-                        <td> {{item.customerName}} </td>
-                        <td> {{item.customerMobile}} </td>
-                        <!-- <td> {{item.amountTotal | number : '1.2-2'}} </td>
-                        <td> {{item.tax | number : '1.2-2'}} </td>
-                        <td> {{item.serviceCharges | number : '1.2-2'}} </td> -->
-                        <td> <span class="badge badge-success-soft text-success badge-pill py-2 px-3 mb-2" style="background-color: #bfe5dc;">{{item.grandTotal | number : '1.2-2'}} PKR</span> </td>
+                        <td> {{item.name}} </td>
+                        <td> {{item.mobile}} </td>
+                        <td> <span class="badge badge-success-soft text-success badge-pill py-2 px-3 mb-2"
+                                style="background-color: #bfe5dc;">{{item.amountTotal | number : '1.2-2'}} PKR</span>
+                        </td>
                         <td>{{item.orderDate | date}}</td>
-                        
-                        <td><span class="badge badge-yellow">{{item.orderType==1?"Delivery" : item.orderType==2?"Pick Up" : "Dine In"}}</span></td>
+                        <td><span class="badge badge-yellow">{{item.orderType == 1? "Delivery" : item.orderType == 2?
+                                "Pick Up" : "Dine In" }}</span></td>
                         <td>
-                            <ngb-highlight [ngClass]="{'btn-info': item.statusID === 102,'btn-warning': item.statusID === 101,'btn-success': item.statusID === 100, 'btn-danger':item.statusID === 103, 'btn-danger':item.statusID === 104 }" class="btn btn-sm" [result]="item.statusID ==100 ? 'Delivered' :
+                            <ngb-highlight
+                                [ngClass]="{'btn-info': item.statusID === 102,'btn-warning': item.statusID === 101,'btn-success': item.statusID === 100, 'btn-danger':item.statusID === 103, 'btn-danger':item.statusID === 104 }"
+                                class="btn btn-sm" [result]="item.statusID ==100 ? 'Delivered' :
                              item.statusID ==101 ? 'Confirmed' :
                              item.statusID ==102 ? 'Prepared' :
                              item.statusID ==103 ? 'On Delivery' :
@@ -99,13 +116,13 @@
                 <p class="pagination-count">
                     Showing
                     <strong>{{(service.pageSize * service.page)-9}}</strong> to
-                    <strong>{{(service.pageSize * service.page) > (total$ | async)!?(total$ | async)!:service.pageSize * service.page}}</strong> of
-                    <strong>{{(total$ | async)!}}</strong> results
+                    <!-- <strong>{{(service.pageSize * service.page) > (total$ | async)!?(total$ | async)!:service.pageSize * service.page}}</strong> of
+                    <strong>{{(total$ | async)!}}</strong> results -->
                 </p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <ngb-pagination [collectionSize]="(total$ | async)!" class="float-right" [(page)]="service.page" [pageSize]="service.pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
-                </ngb-pagination>
+                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" class="float-right" [(page)]="service.page" [pageSize]="service.pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+                </ngb-pagination> -->
             </div>
         </div>
     </div>

@@ -168,7 +168,8 @@ export class AdditemsComponent implements OnInit {
       this.ModifiersList = res;
     });
   }
-  private loadAddons() {    
+  private loadAddons() { 
+    debugger   
     this.itemsService.loadAddonList(this.f.brandID.value).subscribe((res: any) => {
       this.AddonsList = res;
     });

@@ -174,7 +174,7 @@ namespace BAL.Repositories
                 {
                     SqlParameter[] p1 = new SqlParameter[2];
                     p1[0] = new SqlParameter("@ItemID", rtn);
-                    p1[1] = new SqlParameter("@Addons", data.Modifiers);
+                    p1[1] = new SqlParameter("@Addons", data.Addons);
                     (new DBHelper().ExecuteNonQueryReturn)("sp_insertItemAddons_Admin", p1);
                 }
 

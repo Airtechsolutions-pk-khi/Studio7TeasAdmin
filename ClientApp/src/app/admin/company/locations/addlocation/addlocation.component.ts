@@ -58,6 +58,9 @@ export class AddlocationComponent implements OnInit {
       locationID: 0,
       opentime: [''],
       closetime: [''],
+      isPickupAllowed:[true],
+      isDeliveryAllowed:[true],
+      isDineInAllowed:[true],
       brandID: this.ls.getSelectedBrand().brandID
     });
   }
@@ -84,6 +87,9 @@ export class AddlocationComponent implements OnInit {
 
     this.f.opentime.setValue(obj.opentime);
     this.f.closetime.setValue(obj.closetime);
+    this.f.isPickupAllowed.setValue(obj.isPickupAllowed === 1 ? true : false);
+    this.f.isDeliveryAllowed.setValue(obj.isDeliveryAllowed === 1 ? true : false);
+    this.f.isDineInAllowed.setValue(obj.isDineInAllowed === 1 ? true : false);
 
     //this.opentime.hour = new Date("01/01/1900 " + obj.opentime).getHours();
     //this.opentime.minute = new Date("01/01/1900 " + obj.opentime).getMinutes();
@@ -118,7 +124,9 @@ export class AddlocationComponent implements OnInit {
     if (this.locationForm.invalid) { return; }
     this.loading = true;
     this.f.statusID.setValue(this.f.statusID.value === true ? 1 : 2);
-
+    this.f.isPickupAllowed.setValue(this.f.isPickupAllowed.value === true ? 1 : 2);
+    this.f.isDeliveryAllowed.setValue(this.f.isDeliveryAllowed.value === true ? 1 : 2);
+    this.f.isDineInAllowed.setValue(this.f.isDineInAllowed.value === true ? 1 : 2);
     if (parseInt(this.f.locationID.value) === 0) {
 
       //Insert location

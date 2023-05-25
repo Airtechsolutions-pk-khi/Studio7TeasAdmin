@@ -82,5 +82,28 @@ namespace StudioAdmin.BLL._Services
                 return new List<SalesCategorywiseBLL>();
             }
         }
+        public List<DeliveryBoyDetailBLL> GetDeliveryBoyDetailRpt(int brandID, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                return _service.GetDeliveryBoyDetailRpt(brandID, FromDate, ToDate);
+            }
+            catch (Exception ex)
+            {
+                return new List<DeliveryBoyDetailBLL>();
+            }
+        }
+       
+        public List<OrderReportBLL> OrderReportByType(int brandID, int orderType, int locationId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                return _service.OrderReportByType(brandID, orderType, locationId, FromDate, ToDate);
+            }
+            catch (Exception ex)
+            {
+                return new List<OrderReportBLL>();
+            }
+        }
     }
 }
