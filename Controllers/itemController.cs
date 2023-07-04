@@ -19,7 +19,16 @@ namespace StudioAdmin.Controllers
             _service = new itemService();
             _env = env;
         }
-
+        [HttpGet("getitem/{categoryid}")]
+        public List<ItemBLL> GetItem(int CategoryID)
+        {
+            return _service.GetItem(CategoryID);
+        }
+        [HttpGet("getmodifiers/{itemid}")]
+        public List<ModifierBLL> GetModifier(int ItemID)
+        {
+            return _service.GetModifier(ItemID);
+        }
         [HttpGet("all/{brandid}")]
         public List<ItemBLL> GetAll(int brandid)
         {

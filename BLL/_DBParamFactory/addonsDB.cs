@@ -26,7 +26,27 @@ namespace BAL.Repositories
             _dt = new DataTable();
             _ds = new DataSet();
         }
-
+        public List<AddonsBLL> GetAddon()
+        {
+            try
+            {
+                var lst = new List<AddonsBLL>();
+                SqlParameter[] p = new SqlParameter[0];
+                _dt = (new DBHelper().GetTableFromSP)("sp_GetAddons_V2");
+                if (_dt != null)
+                {
+                    if (_dt.Rows.Count > 0)
+                    {
+                        lst = _dt.DataTableToList<AddonsBLL>();
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public List<AddonsBLL> GetAll(int brandID)
         {
             try

@@ -1,0 +1,197 @@
+
+<form [formGroup]="orderForm" class="form">
+  <style>
+    .accordion .card-header:after {
+      font-family: 'FontAwesome';
+      content: "\f068";
+      float: right;
+    }
+
+    .accordion .card-header.collapsed:after {
+      /* symbol for "collapsed" panels */
+      content: "\f067";
+    }
+  </style>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card mb-4">
+        <h6 class="card-header">Edit Order Details</h6>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <div id="accordion" class="accordion">
+                    <div data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Customer Information
+                    </div>
+                    <!--</div>-->
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1" for="inputUsername">Name</label>
+                          <input type="text" class="form-control" id=Name placeholder="" formControlName="customerName">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1" for="inputFirstName">Contact #</label>
+                          <input type="text" class="form-control" id=customerMobile placeholder="" formControlName="customerMobile">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1" for="inputLastName">Address</label>
+                          <input type="text" class="form-control" id=address placeholder="" formControlName="customerAddress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <!-- Form Row-->
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <div id="accordion" class="accordion">
+                    <div class="collapsed" data-toggle="collapse" href="#collapsetwo">
+                      <label class="">
+                        Order Information
+                      </label>
+                    </div>
+                    <div id="collapsetwo" class="collapse show" data-parent="#accordion">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1">Order Status</label>
+                          <select class="form-control" formControlName="statusID" [(ngModel)]="order.statusID">
+                            <option value="102" selected>Accepted</option>
+                            <option value="104">Out For Delivery</option>
+                            <option value="103">Rejected</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-md-3" style="">
+                          <label class="small mb-1" for="inputUsername">Delivery Boy</label>
+                          <select class="custom-select" id=deliveryBoyID formControlName="deliveryBoyID" [(ngModel)]="order.deliveryBoyID">
+                            <option [ngValue]="option.deliveryBoyID" selected="option.deliveryBoyID == deliveryBoyID" *ngFor="let option of DeliveryBoys"> {{option.dbName}} </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1" for="inputLastName">Order Date</label>
+                          <input type="text" class="form-control" id=orderDate placeholder="" formControlName="orderDate" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label class="small mb-1" for="inputLastName">Order Type</label>
+                          <!--<input type="text" class="form-control" id=address placeholder="" formControlName="orderType">-->
+                          <select class="form-control" formControlName="orderType" [(ngModel)]="order.orderType">
+                            <option value="1" selected>Delivery</option>
+                            <option value="2">PickUp</option>
+                            <option value="3">DineIn</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label class="small mb-1" for="inputUsername">Category</label>
+                  <select class="custom-select" id=categoryID formControlName="categoryID" (change)="onChange($event)">
+                    <option [ngValue]="option.categoryID" selected="option.categoryID == categoryID" *ngFor="let option of Categories"> {{option.name}} </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="small mb-1" for="inputUsername">Item</label>
+                  <ng-select [items]="ItemList" bindLabel="name" bindValue="itemID" [multiple]="false" placeholder="" [ngModelOptions]="{standalone: true}" [(ngModel)]="orderDetails.itemID" (ngModelChange)="onSelect($event)">
+                    <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                      <div class="ng-value" *ngFor="let item of items">
+                        <span class="ng-value-label">{{item.name}}</span>
+                        <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="small mb-1" for="inputUsername">Modifiers</label>
+                  <ng-select [items]="ModifiersList" bindLabel="name" bindValue="modifierID" [(ngModel)]="orderDetails.modifier" [multiple]="false" placeholder="" [ngModelOptions]="{standalone: true}">
+                    <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                      <div class="ng-value" *ngFor="let item of items">
+                        <span class="ng-value-label">{{item.name}}</span>
+                        <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="small mb-1" for="inputUsername">Addon</label>
+                  <ng-select [items]="Addons" bindLabel="name" bindValue="addonID" [(ngModel)]="orderDetails.addon" [multiple]="true" placeholder="" [ngModelOptions]="{standalone: true}">
+                    <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                      <div class="ng-value" *ngFor="let item of items">
+                        <span class="ng-value-label">{{item.name}}</span>
+                        <span class="ng-value-icon right" style="border-left: 1px solid #000;" (click)="clear(item)" aria-hidden="true">×</span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label class="small mb-1" for="inputLastName">Quantity</label>
+                  <input type="number" class="form-control" id=quantity placeholder="" [(ngModel)]="orderDetails.quantity" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="small mb-1" for="inputLastName">Action</label>
+                  <br />
+                  <button class="btn btn-primary" (click)="AddChild(orderDetails)" [disabled]="orderDetails==null">Add</button>
+                </div>
+
+              </div>
+
+              <div class="tile-body p-0 table-responsive ">
+                <table class="table table-striped">
+                  <thead>
+                    <tr class="table-header">
+                      <th width="10%">Image </th>
+                      <th width="40%">Name </th>
+                      <th width="10%">Qty</th>
+                      <th width="10%">Price</th>
+                      <th width="10%">T.Price</th>
+                      <th width="10%">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of OrderDetailList">
+                      <td>
+                        <img style="width: 100% !important;" *ngIf="item.image !== ''" [src]="item.image" class="table-img" alt="" />
+                        <div *ngIf="item.image === ''" class="image-replace"></div>
+                      </td>
+                      <td>
+                        {{item.name}}
+                    <tr *ngFor="let item1 of item.orderDetailModifiers">
+                      <td class="badge badge-pill">Modifiers: {{ item1.name }} [ {{item1.price}} RS ] </td>
+
+                    </tr>
+                    <tr *ngFor="let item2 of item.orderDetailAddons">
+                      <td class="badge badge-pill">Addons: {{ item2.name }} [ {{item2.price}} RS ] </td>
+
+                    </tr>
+
+                  <td> {{item.quantity}} </td>
+                  <td> {{item.price * item.quantity}} </td>
+                  <!--<td> {{item.price}} </td>-->
+                <td> {{item.total == null ? item.price * item.quantity : item.total }} </td>
+                  <td>
+                    <i (click)="RemoveChild(item)" class="fas fa-fw fa-trash-alt "></i>
+                  </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Save changes button-->
+          <button class="btn btn-primary" (click)="onSubmit()" type="submit">Save changes</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -18,8 +18,33 @@ export class Orders {
   orderID: number;
   orderPreparedDate: string;
   orderOFDDate: string;
+  deliveryBoyID: number;
 }
-
+export class DeliveryBoyOrders {
+  deliveryBoyID: number
+  dbName: string
+  dbAddress: string
+  dbContactNo: string
+  dbVehicleNo: string
+  dbcnicNo: string
+  image: string
+  createdOn: string
+  createdBy: string
+  updatedOn: string
+  updatedBy: string
+  statusID: number
+  brandID: number
+  amount: number
+}
+export class OrderDetailAddons {
+  orderDetailAddonID: number;
+  orderDetailID: number;
+  addonID: number;
+  quantity: number;
+  price: number;
+  cost: number;
+  statusID: number;
+}
 export class OrderDetails {
   orderDetailID: number;
   orderID: number;

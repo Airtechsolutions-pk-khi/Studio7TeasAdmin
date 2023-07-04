@@ -27,7 +27,30 @@ namespace BAL.Repositories
             _dt = new DataTable();
             _ds = new DataSet();
         }
+        public List<ItemBLL> GetItem(int CategoryID)
+        {
+            try
+            {
+                var lst = new List<ItemBLL>();
+                SqlParameter[] p = new SqlParameter[1];
+                p[0] = new SqlParameter("@CategoryID", CategoryID);
 
+                _dt = (new DBHelper().GetTableFromSP)("sp_GetItems_V2", p);
+                if (_dt != null)
+                {
+                    if (_dt.Rows.Count > 0)
+                    {
+                        lst = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<ItemBLL>>();
+                    }
+                }
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public List<ItemBLL> GetAll(int brandID)
         {
             try
@@ -52,7 +75,30 @@ namespace BAL.Repositories
                 return null;
             }
         }
+        public List<ModifierBLL> GetModifier(int ItemID)
+        {
+            try
+            {
+                var lst = new List<ModifierBLL>();
+                SqlParameter[] p = new SqlParameter[1];
+                p[0] = new SqlParameter("@ItemID", ItemID);
 
+                _dt = (new DBHelper().GetTableFromSP)("sp_getModifiers_V2", p);
+                if (_dt != null)
+                {
+                    if (_dt.Rows.Count > 0)
+                    {
+                        lst = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<ModifierBLL>>();
+                    }
+                }
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public ItemBLL Get(int id, int brandID)
         {
             try

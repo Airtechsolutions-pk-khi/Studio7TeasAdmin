@@ -13,6 +13,7 @@ namespace StudioAdmin._Models
         public OrderCheckoutBLL OrderCheckouts { get; set; }
         public OrderCustomerBLL CustomerOrders { get; set; }
         public List<OrderDetailBLL> OrderDetails { get; set; }
+        public DeliveryBoyInfoBLL DeliveryBoyInfo { get; set; }
         public OrdersBLL Order { get; set; }
     }
     public class RspPrintReceipt
@@ -20,11 +21,30 @@ namespace StudioAdmin._Models
         public int Status { get; set; }
         public string HTML { get; set; }
     }
+    public class DeliveryBoyInfoBLL
+    {
+        public int DeliveryBoyID { get; set; }
+        public string DBName { get; set; }
+        public string DBAddress { get; set; }
+        public string DBContactNo { get; set; }
+        public string DBVehicleNo { get; set; }
+        public string DBCNICNo { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime UpdatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public int StatusID { get; set; }
+        //public int DBAJuncID { get; set; }
+        public int BrandID { get; set; }
+        public string DBImage { get; set; }
+        public int Amount { get; set; }
 
+    }
     public class OrdersBLL
     {
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
+        public int? DeliveryBoyID { get; set; }
         public int TransactionNo { get; set; }
         public int OrderNo { get; set; }
         public string OrderType { get; set; }
@@ -54,7 +74,35 @@ namespace StudioAdmin._Models
         public string CustomerAddress { get; set; }
         public string LocationName { get; set; }
 
-        public string DeliveryBoyID { get; set; }
+        
+    }
+    public class OrdersEditBLL1
+    {
+        public string CustomerName { get; set; }
+        public string CustomerMobile { get; set; }
+        public int? DeliveryBoyID { get; set; }
+        public string CustomerAddress { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public Nullable<System.DateTime> LastUpdatedDate { get; set; }
+        public Nullable<int> OrderID { get; set; }
+        public Nullable<int> StatusID { get; set; }
+        public string OrderType { get; set; }
+        //public List<OrderDetailBLL> OrderDetails { get; set; }
+        //public OrdersBLL Order { get; set; }
+    }
+    public class OrdersEditBLL
+    {
+        public string CustomerName { get; set; }
+        public string CustomerMobile { get; set; }
+        public int? DeliveryBoyID { get; set; }
+        public string CustomerAddress { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public Nullable<System.DateTime> LastUpdatedDate { get; set; }
+        public Nullable<int> OrderID { get; set; }
+        public Nullable<int> StatusID { get; set; }
+        public string OrderType { get; set; }
+        public List<OrderDetailBLL> OrderDetails { get; set; }
+        public OrdersBLL Order { get; set; }
     }
     public partial class OrderDetailBLL
     {
@@ -70,10 +118,22 @@ namespace StudioAdmin._Models
         public string LastUpdateBy { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> LastUpdateDT { get; set; }
-
+        public List<OrderAddonsBLL> OrderDetailAddons { get; set; }
         public List<OrderModifiersBLL> OrderDetailModifiers { get; set; }
     }
-
+    public class OrderAddonsBLL
+    {
+        public int OrderDetailAddonID { get; set; }
+        public Nullable<int> OrderDetailID { get; set; }
+        public string AddonName { get; set; }
+        public Nullable<int> AddonID { get; set; }
+        public Nullable<double> Quantity { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<double> Cost { get; set; }
+        public Nullable<int> StatusID { get; set; }
+        public string LastUpdateBy { get; set; }
+        public Nullable<System.DateTime> LastUpdateDT { get; set; }
+    }
     public class OrderModifiersBLL
     {
         public int OrderDetailModifierID { get; set; }

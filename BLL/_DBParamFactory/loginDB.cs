@@ -1,5 +1,6 @@
 ﻿
 using DAL.Models;
+using Newtonsoft.Json.Linq;
 using StudioAdmin._Models;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,9 @@ namespace BAL.Repositories
                 {
                     if (_ds.Tables[0].Rows.Count > 0)
                     {
-                        repo = _ds.Tables[0].DataTableToList<LoginBLL>().FirstOrDefault();
+                        //repo = _ds.Tables[0].DataTableToList<LoginBLL>().FirstOrDefault();
+                        repo = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_ds.Tables[0])).ToObject<List<LoginBLL>>().FirstOrDefault();
+                        //repo = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(_dt)).ToObject<List<LoginBLL>>().FirstOrDefault();
                     }
                     else repo = null;
 

@@ -74,6 +74,9 @@ export class OrdersComponent implements OnInit {
   View(orders) {
     this.router.navigate(["admin/orders/view", orders]);
   }
+  Edit(orders) {
+    this.router.navigate(["admin/orders/edit", orders]);
+  }
   Print(sid) {
     this.service.printorder(sid, this.selectedBrand).subscribe((res: any) => {
       //Set Forms

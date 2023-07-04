@@ -20,7 +20,11 @@ namespace StudioAdmin.Controllers
             _env = env;
         }
 
-
+        [HttpGet("allcategory")]
+        public List<CategoryBLL> GetCategory()
+        {
+            return _service.GetCategory();
+        }
         [HttpGet("all/{brandid}")]
         public List<CategoryBLL> GetAll(int brandid)
         {

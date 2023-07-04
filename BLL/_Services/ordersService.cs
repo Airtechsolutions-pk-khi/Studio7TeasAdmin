@@ -132,23 +132,28 @@ namespace StudioAdmin.BLL._Services
                 RspOrderDetail rsp = new RspOrderDetail();
                 var lstOD = new List<OrderDetailBLL>();
                 var lstODM = new List<OrderModifiersBLL>();
+                var lstADN = new List<OrderAddonsBLL>();
                 var oc = new OrderCheckoutBLL();
                 var ocustomer = new OrderCustomerBLL();
                 var bll = new List<OrdersBLL>();
+                var db = new List<DeliveryBoyInfoBLL>();
                 var ds = _service.Get(id, brandID);
                 var _dsOrders = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[0])).ToObject<List<OrdersBLL>>();
                 var _dsorderdetail = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[1])).ToObject<List<OrderDetailBLL>>();
                 var _dsorderdetailmodifier = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[2])).ToObject<List<OrderModifiersBLL>>();
-                var _dsOrdercheckout = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[3])).ToObject<List<OrderCheckoutBLL>>();
-                var _dsOrderCustomerData = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[4])).ToObject<List<OrderCustomerBLL>>();
+                var _dsorderdetailaddons = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[3])).ToObject<List<OrderAddonsBLL>>();
+                var _dsOrdercheckout = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[4])).ToObject<List<OrderCheckoutBLL>>();
+                var _dsOrderCustomerData = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[5])).ToObject<List<OrderCustomerBLL>>();
+                var _dsDeliveryBoyData = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[6])).ToObject<List<DeliveryBoyInfoBLL>>();
 
                 foreach (var i in _dsOrders)
                 {
                     lstOD = new List<OrderDetailBLL>();
-                    foreach (var j in _dsorderdetail.Where(x => x.StatusID == 201 && x.OrderID == i.OrderID))
+                    foreach (var j in _dsorderdetail.Where(x => x.OrderID == i.OrderID))
                     {
                         lstODM = new List<OrderModifiersBLL>();
                         double? modPrice = 0;
+                        double? adnPrice = 0;
                         foreach (var k in _dsorderdetailmodifier.Where(x => x.StatusID == 201 && x.OrderDetailID == j.OrderDetailID))
                         {
                             lstODM.Add(new OrderModifiersBLL
@@ -165,8 +170,28 @@ namespace StudioAdmin.BLL._Services
                                 ModifierName = k.ModifierName
                             });
                             modPrice += (j.Quantity * k.Price);
-                        }
 
+
+                        }
+                        foreach (var l in _dsorderdetailaddons.Where(x => x.StatusID == 201 && x.OrderDetailID == j.OrderDetailID))
+                        {
+                            lstADN.Add(new OrderAddonsBLL
+                            {
+                                StatusID = l.StatusID,
+                                Price = l.Price,
+                                AddonID = l.AddonID,
+                                Cost = l.Cost,
+                                LastUpdateBy = l.LastUpdateBy,
+                                LastUpdateDT = l.LastUpdateDT,
+                                OrderDetailID = l.OrderDetailID,
+                                OrderDetailAddonID = l.OrderDetailAddonID,
+                                Quantity = l.Quantity,
+                                AddonName = l.AddonName
+                            });
+                            adnPrice += (j.Quantity * l.Price);
+
+
+                        }
                         lstOD.Add(new OrderDetailBLL
                         {
                             StatusID = j.StatusID,
@@ -179,6 +204,7 @@ namespace StudioAdmin.BLL._Services
                             ItemID = j.ItemID,
                             Name = j.Name,
                             OrderDetailModifiers = lstODM,
+                            OrderDetailAddons = lstADN,
                             OrderID = j.OrderID,
                             OrderMode = j.OrderMode
                         });
@@ -202,13 +228,16 @@ namespace StudioAdmin.BLL._Services
                         TransactionNo = i.TransactionNo,
                         OrderDoneDate = i.OrderDoneDate,
                         OrderOFDDate = i.OrderOFDDate,
-                        OrderPreparedDate = i.OrderPreparedDate
+                        OrderPreparedDate = i.OrderPreparedDate,
+                        DeliveryBoyID = i.DeliveryBoyID
+
                     });
 
                     rsp.Order = bll.FirstOrDefault();
                     rsp.OrderDetails = lstOD;
                     rsp.OrderCheckouts = _dsOrdercheckout.Where(x => x.OrderID == i.OrderID).FirstOrDefault();
                     rsp.CustomerOrders = _dsOrderCustomerData.Where(x => x.OrderID == i.OrderID).FirstOrDefault();
+                    rsp.DeliveryBoyInfo = _dsDeliveryBoyData.Where(x => x.DeliveryBoyID == i.DeliveryBoyID).FirstOrDefault();
                 }
 
                 return rsp;
@@ -248,7 +277,13 @@ namespace StudioAdmin.BLL._Services
                 return 0;
             }
         }
+        public int Edit(OrdersEditBLL obj, IWebHostEnvironment _env)
+        {
+            obj.LastUpdatedDate = _UTCDateTime_SA();
+            var result = _service.Edit(obj);
 
+            return result;
+        }
         public int Delete(OrdersBLL data)
         {
             try

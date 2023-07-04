@@ -53,7 +53,12 @@ namespace StudioAdmin.Controllers
         {
             return _service.Update(obj, _env);
         }
-
+        [HttpPost]
+        [Route("edit")]
+        public int PostEdit([FromBody] OrdersEditBLL obj)
+        {
+            return  _service.Edit(obj, _env);
+        }
 
         [HttpPost]
         [Route("delete")]

@@ -15,7 +15,11 @@ namespace StudioAdmin.Controllers
         {
             _service = new addonsService();
         }
-
+        [HttpGet("alladdon")]
+        public List<AddonsBLL> GetAddon()
+        {
+            return _service.GetAddon();
+        }
         [HttpGet("all/{brandid}")]
         public List<AddonsBLL> GetAll(int brandid)
         {

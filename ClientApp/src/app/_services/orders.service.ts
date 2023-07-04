@@ -5,6 +5,11 @@ import { switchMap, tap, map } from 'rxjs/operators';
 import { SortColumn, SortDirection } from '../_directives/sortable.directive';
 import { State } from '../_models/State';
 import { Orders } from '../_models/Orders';
+import DeliveryBoy from '../_models/DeliveryBoy';
+import { Category } from '../_models/Cateogry';
+import { Addons } from '../_models/Addons';
+import { Items } from '../_models/Items';
+import { Modifiers } from '../_models/Modifiers';
 
 
 interface SearchOrdersResult {
@@ -79,6 +84,25 @@ export class OrdersService {
   }
   printorder(id,brandId) {
     return this.http.get<Orders[]>(`api/orders/print/${id}`);
+  } 
+  getDeliveryBoys(brandId) {
+    return this.http.get<DeliveryBoy[]>(`api/DeliveryBoy/all/${brandId}`)
+  }
+  loadCategory() {
+    
+    return this.http.get<Category[]>(`api/category/allcategory/`);
+  }
+  loadAddon() {
+    debugger
+    return this.http.get<Addons[]>(`api/addons/alladdon/`);
+  }
+  loadItems(categoryid) {
+    
+    return this.http.get<Items[]>(`api/item/getitem/${categoryid}`);
+  }
+  loadModifiers(itemid) {
+    
+    return this.http.get<Modifiers[]>(`api/item/getmodifiers/${itemid}`);
   }
   getAllData(brandID,locationID,fromDate,toDate) {
 
@@ -146,7 +170,14 @@ export class OrdersService {
         return res;
       }));
   }
- 
+  updateOrder(updateData) {
+    debugger
+    return this.http.post(`api/orders/edit`, updateData)
+      .pipe(map(res => {
+        console.log(res);
+        return res;
+      }));
+  }
    
 
 }

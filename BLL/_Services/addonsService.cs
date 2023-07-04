@@ -15,7 +15,17 @@ namespace StudioAdmin.BLL._Services
         {
             _service = new addonsDB();
         }
-
+        public List<AddonsBLL> GetAddon()
+        {
+            try
+            {
+                return _service.GetAddon();
+            }
+            catch (Exception ex)
+            {
+                return new List<AddonsBLL>();
+            }
+        }
         public List<AddonsBLL> GetAll(int brandID)
         {
             try

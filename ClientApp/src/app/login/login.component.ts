@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   private loadLocations(bid) {
     
     this.service.getAllLocations(bid).subscribe((res: any) => {
-      
+      debugger
       if(res.length>0){
         this.ls.setLocation(res);
         this.ls.setSelectedLocation(res[0]);

@@ -16,7 +16,17 @@ namespace StudioAdmin.BLL._Services
         {
             _service = new itemDB();
         }
-
+        public List<ItemBLL> GetItem(int CategoryID)
+        {
+            try
+            {
+                return _service.GetItem(CategoryID);
+            }
+            catch (Exception ex)
+            {
+                return new List<ItemBLL>();
+            }
+        }
         public List<ItemBLL> GetAll(int brandID)
         {
             try
@@ -28,7 +38,17 @@ namespace StudioAdmin.BLL._Services
                 return new List<ItemBLL>();
             }
         }
-        
+        public List<ModifierBLL> GetModifier(int ItemID)
+        {
+            try
+            {
+                return _service.GetModifier(ItemID);
+            }
+            catch (Exception ex)
+            {
+                return new List<ModifierBLL>();
+            }
+        }
         public ItemBLL Get(int id, int brandID)
         {
             try

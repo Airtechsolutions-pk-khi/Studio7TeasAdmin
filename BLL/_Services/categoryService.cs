@@ -16,7 +16,17 @@ namespace StudioAdmin.BLL._Services
         {
             _service = new categoryDB();
         }
-
+        public List<CategoryBLL> GetCategory()
+        {
+            try
+            {
+                return _service.GetCategory();
+            }
+            catch (Exception ex)
+            {
+                return new List<CategoryBLL>();
+            }
+        }
         public List<CategoryBLL> GetAll(int brandID)
         {
             try
