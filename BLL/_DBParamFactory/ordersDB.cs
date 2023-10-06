@@ -73,8 +73,8 @@ namespace BAL.Repositories
                 return null;
             }
         }
-       
-       
+
+        
         public int Update(OrdersBLL data)
         {
             try

@@ -5,13 +5,86 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudioAdmin._Models;
+using System.Data;
+using System.Net;
+using WebAPICode.Helpers;
+using Nancy.Json;
+using System.Data.SqlClient;
 
 namespace BAL.Repositories
 {
     public class baseDB
         //: IDisposable
     {
+        private DataSet _ds;
 
+        public void PushNotificationAndroid(PushNotificationBLL obj)
+        {
+            try
+            {
+                var applicationID = "AAAACf7C5VQ:APA91bFGYMRVBO7dya8OPZSgDLYmxQLsOCKqvLK0OuzQ4iNYpccSXYxpQWTHBE2T4RlIpC2hGXe5yvYU0UhgmiCnfkJ9_DtrCrNHu541FXHmHc4w7GqDv2Vv0k1CykXobhsUK7wKksyz";
+                var senderId = "42928891220";
+                string deviceId = obj.DeviceID;
+                WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+                tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
+                var data = new
+                {
+                    to = deviceId,
+                    notification = new
+                    {
+                        body = obj.Message,
+                        title = obj.Title,
+                        icon = "myicon",
+                        sound = "default"
+                    }
+                };
+                var serializer = new JavaScriptSerializer();
+                var json = serializer.Serialize(data);
+                Byte[] byteArray = Encoding.UTF8.GetBytes(json);
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+                tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+                tRequest.ContentLength = byteArray.Length;
+                using (Stream dataStream = tRequest.GetRequestStream())
+                {
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    using (WebResponse tResponse = tRequest.GetResponse())
+                    {
+                        using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                        {
+                            using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                            {
+                                String sResponseFromServer = tReader.ReadToEnd();
+                                string str = sResponseFromServer;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string str = ex.Message;
+            }
+        }
+        public DataSet GetToken(int CustomerID)
+        {
+            try
+            {
+                var _obj = new PushTokenBLL();
+                SqlParameter[] p = new SqlParameter[1];
+                p[0] = new SqlParameter("@CustomerID", CustomerID);
+
+
+                _ds = (new DBHelper().GetDatasetFromSP)("sp_GetToken", p);
+
+                return _ds;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         //StreamWriter _sw;
         //public DB_A35721_lunchboxDBEntities DBContext;
         //public BaseRepository()

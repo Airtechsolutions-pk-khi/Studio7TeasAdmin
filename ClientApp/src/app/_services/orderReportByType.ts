@@ -26,7 +26,7 @@ function sort(data: OrderReportbyType[], column: SortColumn, direction: string):
 }
 
 function matches(data: OrderReportbyType, term: string) {
-  debugger
+  
   return data.name.toLowerCase().includes(term.toLowerCase())
 }
 

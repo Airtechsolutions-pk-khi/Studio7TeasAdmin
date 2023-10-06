@@ -156,7 +156,7 @@ namespace BAL.Repositories
                 p[23] = new SqlParameter("@Tax", data.Tax);
                 p[24] = new SqlParameter("@IsPickupAllowed", data.IsPickupAllowed);
                 p[25] = new SqlParameter("@IsDeliveryAllowed", data.IsDeliveryAllowed);
-                p[26] = new SqlParameter("@IsDeliveryAllowed", data.IsDineInAllowed);
+                p[26] = new SqlParameter("@IsDineInAllowed", data.IsDineInAllowed);
                 rtn = (new DBHelper().ExecuteNonQueryReturn)("dbo.sp_updateLocation_Admin", p);
 
                 return rtn;

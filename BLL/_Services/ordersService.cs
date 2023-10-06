@@ -269,7 +269,82 @@ namespace StudioAdmin.BLL._Services
             {
                 data.LastUpdatedDate = _UTCDateTime_SA();
                 var result = _service.Update(data);
-
+                if (data.StatusID == 102)
+                {
+                    try
+                    {
+                        var ds = _service.GetToken(data.CustomerID);
+                        var getTokens = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[0])).ToObject<List<PushTokenBLL>>();
+                        foreach (var item in getTokens)
+                        {
+                            var token = new PushNotificationBLL();
+                            token.Title = "Studio7Teas" + " | Order Update";
+                            token.Message = "Your Order Has Been confirmed";
+                            token.DeviceID = item.Token;
+                            _service.PushNotificationAndroid(token);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                else if (data.StatusID == 104)
+                {
+                    try
+                    {
+                        var ds = _service.GetToken(data.CustomerID);
+                        var getTokens = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[0])).ToObject<List<PushTokenBLL>>();
+                        foreach (var item in getTokens)
+                        {
+                            var token = new PushNotificationBLL();
+                            token.Title = "Studio7Teas" + " | Order Update";
+                            token.Message = "Your Order is now out for Delivery";
+                            token.DeviceID = item.Token;
+                            _service.PushNotificationAndroid(token);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                else if (data.StatusID == 100)
+                {
+                    try
+                    {
+                        var ds = _service.GetToken(data.CustomerID);
+                        var getTokens = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[0])).ToObject<List<PushTokenBLL>>();
+                        foreach (var item in getTokens)
+                        {
+                            var token = new PushNotificationBLL();
+                            token.Title = "Studio7Teas" + " | Order Update";
+                            token.Message = "Your Order Has Been Delivered Successfully";
+                            token.DeviceID = item.Token;
+                            _service.PushNotificationAndroid(token);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                else if (data.StatusID == 103)
+                {
+                    try
+                    {
+                        var ds = _service.GetToken(data.CustomerID);
+                        var getTokens = JArray.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(ds.Tables[0])).ToObject<List<PushTokenBLL>>();
+                        foreach (var item in getTokens)
+                        {
+                            var token = new PushNotificationBLL();
+                            token.Title = "Studio7Teas" + " | Order Update";
+                            token.Message = "Your Order Has Been Cancelled";
+                            token.DeviceID = item.Token;
+                            _service.PushNotificationAndroid(token);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
                 return result;
             }
             catch (Exception ex)

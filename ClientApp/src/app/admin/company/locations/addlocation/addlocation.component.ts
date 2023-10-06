@@ -66,7 +66,7 @@ export class AddlocationComponent implements OnInit {
   }
 
   private editForm(obj) {
-    
+    debugger
     this.f.name.setValue(obj.name);
     this.f.email.setValue(obj.email);
     this.f.contactNo.setValue(obj.contactNo);
