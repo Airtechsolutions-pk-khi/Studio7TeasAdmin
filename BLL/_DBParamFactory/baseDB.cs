@@ -23,8 +23,8 @@ namespace BAL.Repositories
         {
             try
             {
-                var applicationID = "AAAACf7C5VQ:APA91bFGYMRVBO7dya8OPZSgDLYmxQLsOCKqvLK0OuzQ4iNYpccSXYxpQWTHBE2T4RlIpC2hGXe5yvYU0UhgmiCnfkJ9_DtrCrNHu541FXHmHc4w7GqDv2Vv0k1CykXobhsUK7wKksyz";
-                var senderId = "42928891220";
+                var applicationID = "AAAAxyXlzXw:APA91bFPTJO0uqFMmQch5IVA3Qvnh7yVbbqokcAfIt6lkzQDZ_i3FsFfUctuU4syvJFodYm3JmUA4TBpgtAAEeXXDaWQoKkEdwDp8KvgjfcbCENPmWpN44BgGNP-rQ_GPYBV7kTkeJgi";
+                var senderId = "855334309244";
                 string deviceId = obj.DeviceID;
                 WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
                 tRequest.Method = "post";
